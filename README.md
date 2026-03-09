@@ -1,7 +1,24 @@
 ##
-目前这个项目只包含2024年电子设计大赛无人机赛道的相关代码。
+目前这个项目包含2025Robocup无人机识别与快递运输赛的任务代码以及2024年电子设计大赛无人机赛道的相关代码。
 ## 项目结构
-src : 代码
+```sh
+tutorial
+│
+├── 2024NUEDC/src                
+│   ├──square_demo
+│   ├──vins_to_mavros
+│   └──vision_to_mavros
+│
+├── catkin_ws/src
+│   ├──quadrotor_msgs
+│   └──tracking_controller
+│
+└── Robocup_2025/src
+    ├──mission_node  
+    ├──quadrotor_msgs
+    └──vins_to_mavros           
+```
+
 # **引言**
 作者是一名大四学生，参加大学生无人机相关赛事已经有两年了，这两年的学习路程苦于没有总揽性的学习规划走了不少弯路，所以决定在打完所有比赛后出一个无人机的学习教程。旨在让感兴趣的同学能够更好地入门。
 >作者学业繁忙，会在空闲时间慢慢更新该仓库
@@ -44,4 +61,38 @@ https://github.com/ZJU-FAST-Lab/Fast-Drone-250.git
 
 ```
 https://github.com/hku-mars/FAST_LIO.git
+```
+# **2025Robocup比赛代码配置**
+## 安装Mavros
+```
+sudo apt-get install ros-noetic-mavros
+cd /opt/ros/noetic/lib/mavros
+sudo ./install_geographiclib_datasets.sh
+```
+其中的noetic要换成相应的ROS版本。
+## 配置SLAM: Fast-lio2
+官方仓库
+```
+https://github.com/hku-mars/FAST_LIO.git
+```
+配置Fast-lio2还需要额外配置Mid360配套的SDK和驱动，我推荐上CSDN跟着教程配置。多个教程互补着看
+
+[CSDN教程1 ]( https://blog.csdn.net/m0_55117804/article/details/142644882?fromshare=blogdetail&sharetype=blogdetail&sharerId=142644882&sharerefer=PC&sharesource=simonluxing&sharefrom=from_link)
+
+[CSDN教程2 ]( https://lanxzheng.blog.csdn.net/article/details/132408005?fromshare=blogdetail&sharetype=blogdetail&sharerId=132408005&sharerefer=PC&sharesource=simonluxing&sharefrom=from_link)
+
+## 配置Ego-planner
+ 推荐东北大学REAL实验室的教程
+```
+https://github.com/NEU-REAL/REAL_DRONE_400.git
+```
+
+## 配置我们的控制器和任务代码
+
+```
+git clone https://github.com/luxting/CSU-EK-Drone-Tutorial.git
+```
+把build和devel文件夹删了然后
+```
+catkin_make
 ```
